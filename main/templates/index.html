@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+
+</head>
+
+<body>
+
+    <div style="margin:5vh 20vw; ">
+        {% if not currency_volume %}
+        <div><a href="api/currency-rate">API</a></div>
+        {% endif %}
+
+
+
+
+        <h1>Конвертер валют</h1>
+        {% if not currency_volume %}
+
+        <h5>Курс обмена на дату: {{date_rate}}</h5>
+
+        <table width="200 px">
+            <th>Валюта</th>
+            <th>Курс, руб.</th>
+            {% for i in currency_list %}
+            {% if i.currency != 'RUB' %}
+
+            <tr>
+                <td>{{i.currency}}</td>
+                <td>{{i.rate|floatformat:3}}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        {% endif %}
+        <div>
+            Сумма рублей: {{data}}
+            <form action="{% url 'currency_volume' %}">
+                {% csrf_token %}
+                <textarea name="fulltextarea" cols=40 rows=1></textarea>
+                <br />
+                <input type="submit" value="Рассчитать" />
+            </form>
+            {% if currency_volume %}
+            Сумма валют по курсу на дату:
+            <table width="200 px">
+                <th>Валюта</th>
+                <th>Руб.</th>
+                {% for i in currency_volume %}
+                {% if i.currency != 'RUB' %}
+                <tr>
+                    <td>{{i.currency}}</td>
+                    <td> {% widthratio i.rate 1 data %}1
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+            <h5><a href="{% url 'current_list' %}">Курсы валют</a></h5>
+
+            {% endif %}
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
