@@ -1,3 +1,6 @@
-<h1>New page</h1>
-
-{{ data }}
+<form action="{% url 'currency_volume' %}">
+    {% csrf_token %}
+    <textarea name="fulltextarea" cols=40 rows=1></textarea>
+    <br />
+    <input type="submit" value="Рассчитать" />
+</form>

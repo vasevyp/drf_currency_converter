@@ -15,13 +15,10 @@
         <div><a href="api/currency-rate">API</a></div>
         {% endif %}
 
-
-
-
         <h1>Конвертер валют</h1>
         {% if not currency_volume %}
 
-        <h5>Курс обмена на дату: {{date_rate}}</h5>
+        <h4>Курс обмена на дату: {{date_rate}}</h4>
 
         <table width="200 px">
             <th>Валюта</th>
@@ -38,15 +35,10 @@
         </table>
         {% endif %}
         <div>
-            Сумма рублей: {{data}}
-            <form action="{% url 'currency_volume' %}">
-                {% csrf_token %}
-                <textarea name="fulltextarea" cols=40 rows=1></textarea>
-                <br />
-                <input type="submit" value="Рассчитать" />
-            </form>
+            Сумма в валюте: {{data}} у.е.
+            {% include 'form.html' %}
             {% if currency_volume %}
-            Сумма валют по курсу на дату:
+            {{data}} у.е. в рублях по курсу на дату: {{date_rate}}
             <table width="200 px">
                 <th>Валюта</th>
                 <th>Руб.</th>
@@ -54,20 +46,18 @@
                 {% if i.currency != 'RUB' %}
                 <tr>
                     <td>{{i.currency}}</td>
-                    <td> {% widthratio i.rate 1 data %}1
+                    <td> {% widthratio i.rate 1 data %}
                     </td>
                 </tr>
                 {% endif %}
                 {% endfor %}
             </table>
-            <h5><a href="{% url 'current_list' %}">Курсы валют</a></h5>
+            <h4><a href="{% url 'current_list' %}">Курсы валют</a></h4>
 
             {% endif %}
         </div>
 
     </div>
-
-
 
 </body>
 

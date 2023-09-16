@@ -5,5 +5,5 @@ from . import views
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', views.CurrencyListView.as_view(), name='current_list'),
-    path('form/', views.currency_volume, name='currency_volume')
+    path('convert/', views.currency_volume, name='currency_volume')
 ]
