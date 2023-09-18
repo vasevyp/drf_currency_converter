@@ -12,8 +12,8 @@
 
 - \$ . env/bin/activate
 
-- pip install -r requirements.txt
+- (env)\$ pip install -r requirements.txt
 
-- ./manage.py runserver
+- (env)\$ ./manage.py runserver
 
 ... Starting development server at **http://127.0.0.1:8000/** -открыть приложение в браузере
