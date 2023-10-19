@@ -16,4 +16,4 @@
 
 - (env)\$ ./manage.py runserver
 
-... Starting development server at **http://127.0.0.1:8000/** -открыть приложение в браузере
+... Starting development server at **http://127.0.0.1:8000/** -open the application in the browser.
